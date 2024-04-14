@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
@@ -9,6 +9,8 @@ import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } f
 import FilterListIcon from '@mui/icons-material/FilterList';
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findProducts } from "../../../State/Product/Action";
 
 const sortOptions = [
     { name: 'Price: Low to High', href: '#', current: false },
@@ -23,20 +25,22 @@ export default function Product() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
-    // const param = useParams();
-    // const dispatch = useDispatch();
-    // const {product} = useSelector(store => store)
+    const param = useParams();
+    const dispatch = useDispatch();
+    const {product} = useSelector(store => store)
+    
 
 
-    // const decodeQueryString = decodeURIComponent(location.search);
-    // const searchParams = new URLSearchParams(decodeQueryString);
-    // const genreValue = searchParams.get("genre");
-    // const languageValue = searchParams.get("language")
-    // const priceValue = searchParams.get("price");
-    // const discount = searchParams.get("discount");
-    // const sortValue = searchParams.get("sort");
-    // const pageNumber = searchParams.get("page") || 1;
-    // const stock = searchParams.get("stock");
+    const decodeQueryString = decodeURIComponent(location.search);
+    const searchParamms = new URLSearchParams(decodeQueryString);
+    const genreValue = searchParamms.get("genre")
+    const languageValue = searchParamms.get("language")
+    const price = searchParamms.get("price")
+    const discount = searchParamms.get("discount")
+    const sortValue = searchParamms.get("sort");
+    const pageNumber = searchParamms.get("page") || 1;
+    const stock = searchParamms.get("stock");
+
 
     const handleFilter = (value, sectionId) => {
 
@@ -71,37 +75,37 @@ export default function Product() {
 
     }
 
-    const handleResetFilters = () => {
-        navigate({ search: '' }); // Reset query parameters
-    }
+    // const handleResetFilters = () => {
+    //     navigate({ search: '' }); // Reset query parameters
+    // }
 
 
-    // useEffect(() => {
-    //     const [minPrice, maxPrice] = priceValue === null?[0,0]:priceValue.split("-").map(Number);
-
-    //     const data = {
-    //         category: param.lavelThree,
-    //         genre: genreValue || [],
-    //         language: languageValue || [],
-    //         minPrice,
-    //         maxPrice,
-    //         minDiscount: discount || 0,
-    //         sort: sortValue || "price_low",
-    //         pageNumber: pageNumber - 1,
-    //         pageSize: 10,
-    //         stock: stock
-    //     }
-    //     dispatch(findProducts(data))
-
-    // }, [param.lavelThree,
-    //     genreValue,
-    //     languageValue,
-    //     priceValue,
-    //     discount,
-    //     sortValue,
-    //     pageNumber,
-    //     stock
-    // ])
+    useEffect(() => {
+        const [minPrice, maxPrice] =
+          price === null ? [0, 0] : price.split("-").map(Number);
+        const data = {
+          category: param.lavelThree,
+          genre: genreValue || [],
+          language: languageValue || [],
+          minPrice: minPrice || 0,
+          maxPrice: maxPrice || 10000,
+          minDiscount: discount || 0,
+          sort: sortValue || "price_low",
+          pageNumber: pageNumber - 1,
+          pageSize: 10,
+          stock: stock,
+        };
+        dispatch(findProducts(data));
+      }, [
+        param.lavelThree,
+        genreValue,
+        languageValue,
+        price,
+        discount,
+        sortValue,
+        pageNumber,
+        stock,
+      ]);
 
     return (
         <div className="bg-white">
@@ -367,7 +371,9 @@ export default function Product() {
                             <div className="lg:col-span-4 w-full">
 
                                 <div className='flex flex-wrap justify-center bg-white py-5'>
-                                    {book_first.map((item) => <ProductCard product={item} />)}
+                                    {product.products && product.products?.content?.map((item) => (
+                                    <ProductCard product={item} />
+                                    ))}
                                 </div>
                             </div>
                         </div>
