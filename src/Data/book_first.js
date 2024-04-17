@@ -2,7 +2,7 @@ export const book_first = [
     {
         "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMVB6K8V72kyl0d8hSHR1_Cuyh2-0_iZt2sg&usqp=CAU",
         "author": "J K Rowling",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -34,7 +34,7 @@ export const book_first = [
     {
         "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUEGAShKWveqPu7tPYoTdhcVNJz7ILJTtviQ&usqp=CAU",
         "author": "Stan Lee",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -66,7 +66,7 @@ export const book_first = [
     {
         "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz7Gvy5Oo4HxEh1tdHpMtK5O0Aj_lIR5OCZw&usqp=CAU",
         "author": "Woddy Allen",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -98,7 +98,7 @@ export const book_first = [
     {
         "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9781649374042.jpg",
         "author": "Rebecca Yarros",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -130,7 +130,7 @@ export const book_first = [
     {
         "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9781250178633.jpg",
         "author": "Kristin Hannah",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -162,7 +162,7 @@ export const book_first = [
     {
         "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9780385534246.jpg",
         "author": "David Grann",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -194,7 +194,7 @@ export const book_first = [
     {
         "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9780670785933.jpg",
         "author": "Bessel",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -226,7 +226,7 @@ export const book_first = [
     {
         "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9780385534260.jpg",
         "author": "David Grann",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -258,7 +258,7 @@ export const book_first = [
     {
         "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9781982185824.jpg",
         "author": "Jennette McCurdy",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -290,7 +290,7 @@ export const book_first = [
     {
         "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9780063252035.jpg",
         "author": "Jesse Watters",
-        "lang" : [
+        "language" : [
             {
                 "name": "KZ",
                 "quantity": 20
@@ -322,7 +322,7 @@ export const book_first = [
     {
       "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9781649374172.jpg",
       "author": "Rebecca Yarros",
-      "lang" : [
+      "language" : [
           {
               "name": "KZ",
               "quantity": 20
@@ -354,7 +354,7 @@ export const book_first = [
   {
     "imageUrl": "https://storage.googleapis.com/du-prd/books/images/9780385550369.jpg",
     "author": "Percival Everett",
-    "lang" : [
+    "language" : [
         {
             "name": "KZ",
             "quantity": 20

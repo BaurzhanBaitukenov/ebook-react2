@@ -27,7 +27,7 @@ export default function Product() {
     const navigate = useNavigate();
     const param = useParams();
     const dispatch = useDispatch();
-    const {product} = useSelector(store => store)
+    const { customersProduct } = useSelector((store) => store);
     
 
 
@@ -75,18 +75,14 @@ export default function Product() {
 
     }
 
-    // const handleResetFilters = () => {
-    //     navigate({ search: '' }); // Reset query parameters
-    // }
-
 
     useEffect(() => {
         const [minPrice, maxPrice] =
           price === null ? [0, 0] : price.split("-").map(Number);
         const data = {
           category: param.lavelThree,
-          genre: genreValue || [],
-          language: languageValue || [],
+          genres: genreValue || [],
+          languages: languageValue || [],
           minPrice: minPrice || 0,
           maxPrice: maxPrice || 10000,
           minDiscount: discount || 0,
@@ -371,9 +367,9 @@ export default function Product() {
                             <div className="lg:col-span-4 w-full">
 
                                 <div className='flex flex-wrap justify-center bg-white py-5'>
-                                    {product.products && product.products?.content?.map((item) => (
-                                    <ProductCard product={item} />
-                                    ))}
+                                {customersProduct?.products?.content?.map((item) => (
+                      <ProductCard product={item} />
+                    ))}
                                 </div>
                             </div>
                         </div>
