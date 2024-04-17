@@ -27,7 +27,7 @@ export default function Product() {
     const navigate = useNavigate();
     const param = useParams();
     const dispatch = useDispatch();
-    const { customersProduct } = useSelector((store) => store);
+    const { product } = useSelector((store) => store);
     
 
 
@@ -367,7 +367,7 @@ export default function Product() {
                             <div className="lg:col-span-4 w-full">
 
                                 <div className='flex flex-wrap justify-center bg-white py-5'>
-                                {customersProduct?.products?.content?.map((item) => (
+                                {product.products && product.products?.content?.map((item) => (
                       <ProductCard product={item} />
                     ))}
                                 </div>

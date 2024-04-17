@@ -92,7 +92,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "new_trend",
         "description":"Love and Death good book."
     },
     {
@@ -124,7 +124,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "new_trend",
         "description":"FOURTH WING good book."
     },
     {
@@ -156,7 +156,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "new_trend",
         "description":"The woman good book."
     },
     {
@@ -188,7 +188,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "new_trend",
         "description":"KILLERS OF THE FLOWER MOON good book."
     },
     {
@@ -220,7 +220,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "new_authors",
         "description":"THE BODY KEEPS THE SCORE good book."
     },
     {
@@ -252,7 +252,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "new_trend",
         "description":"THE WAGER good book."
     },
     {
@@ -284,7 +284,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "comics",
         "description":"I'M GLAD MY MOM DIED good book."
     },
     {
@@ -316,7 +316,7 @@ export const book_first = [
         "quantity": 100,
         "topLavelCategory": "category",
         "secondLavelCategory": "books",
-        "thirdLavelCategory": "trend",
+        "thirdLavelCategory": "new_trend",
         "description":"GET IT TOGETHER good book."
     },
     {
@@ -348,7 +348,7 @@ export const book_first = [
       "quantity": 100,
       "topLavelCategory": "category",
       "secondLavelCategory": "books",
-      "thirdLavelCategory": "trend",
+      "thirdLavelCategory": "most_popular",
       "description":"GET IT TOGETHER good book."
   },
   {
@@ -380,7 +380,7 @@ export const book_first = [
     "quantity": 100,
     "topLavelCategory": "category",
     "secondLavelCategory": "books",
-    "thirdLavelCategory": "trend",
+    "thirdLavelCategory": "new_trend",
     "description":"GET IT TOGETHER good book."
 },
 ]
