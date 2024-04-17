@@ -6,6 +6,7 @@ import { book_first } from '../../../Data/book_first'
 import ProductCard from './ProductCard'
 import { filters, singleFilter } from './FilterData'
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import Pagination from '@mui/material/Pagination';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -27,9 +28,9 @@ export default function Product() {
     const navigate = useNavigate();
     const param = useParams();
     const dispatch = useDispatch();
-    const { product } = useSelector((store) => store);
-    
+    const { products } = useSelector((store) => store);
 
+    
 
     const decodeQueryString = decodeURIComponent(location.search);
     const searchParamms = new URLSearchParams(decodeQueryString);
@@ -41,6 +42,13 @@ export default function Product() {
     const pageNumber = searchParamms.get("page") || 1;
     const stock = searchParamms.get("stock");
 
+    const handlePaginationChange = (event, value) => {
+        const searchParamms = new URLSearchParams(location.search)
+        searchParamms.set("page", value);
+        const query = searchParamms.toString();
+        console.log(searchParamms)
+        navigate({search:`?${query}`})
+    }
 
     const handleFilter = (value, sectionId) => {
 
@@ -88,7 +96,7 @@ export default function Product() {
           minDiscount: discount || 0,
           sort: sortValue || "price_low",
           pageNumber: pageNumber - 1,
-          pageSize: 10,
+          pageSize: 4,
           stock: stock,
         };
         dispatch(findProducts(data));
@@ -367,11 +375,18 @@ export default function Product() {
                             <div className="lg:col-span-4 w-full">
 
                                 <div className='flex flex-wrap justify-center bg-white py-5'>
-                                {product.products && product.products?.content?.map((item) => (
+                                {products.products && products.products?.content?.map((item) => (
                       <ProductCard product={item} />
                     ))}
                                 </div>
                             </div>
+                        </div>
+                    </section>
+
+                    <section className="w-full px=[3.6rem]">
+                        <div className="px-4 py-5 flex justify-center">
+                            <Pagination count={products.products?.totalPages} color="secondary" 
+                            onChange={handlePaginationChange}/>
                         </div>
                     </section>
                 </main>

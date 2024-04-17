@@ -265,14 +265,14 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                
+                <a href="/">
                   <span className="sr-only">Your Company</span>
                   <img
-                    src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNtTGLRw9H6o4FPfz8jwQ8NFZTyFH-ToovEA&usqp=CAU"
                     alt="Shopwithzosh"
                     className="h-8 w-8 mr-2"
                   />
-                
+                </a>
               </div>
 
               {/* Flyout menus */}

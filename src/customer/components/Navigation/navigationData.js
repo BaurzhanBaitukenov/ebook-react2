@@ -30,7 +30,6 @@ export const navigation = {
                         {name: 'Most Popular', id: 'most_popular'},
                         // {name: 'Mystery', id: 'mystery'},
                         // {name: 'Love', id: 'love'},
-                        {name: 'Browse All', id: 'browse_all'},
                     ],
                 },
                 // {

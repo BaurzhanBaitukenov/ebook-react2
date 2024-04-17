@@ -52,7 +52,7 @@ export const book_first = [
                 "quantity": 20
               }
         ],
-        "genre": "Fantacy",
+        "genre": "Fantasy",
         "title": "Spider-Man",
         "discountedPrice": 4300,
         "price": 25000,

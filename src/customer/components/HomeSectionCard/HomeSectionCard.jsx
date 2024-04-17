@@ -16,8 +16,8 @@ const HomeSectionCard = ({product}) => {
 
         <div className='p-4'>
             <h3 className='text-lg font-medium'>{product.title}</h3>
-            <p className='mt-2 text-sm text-gray-500'>{product.author}</p>
-            <p className='mt-2 text-sm text-gray-500'>{product.description}</p>
+            <p className='mt-2 text-sm text-gray-500'>Author: {product.author}</p>
+            <p className='mt-2 text-sm text-gray-500'>Genre: {product.genre}</p>
         </div>
 
     </div>    
