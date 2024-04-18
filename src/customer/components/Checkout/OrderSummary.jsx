@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getOrderById } from '../../../State/Order/Action'
 import { useLocation } from 'react-router-dom'
 import AdressCard from '../AdressCard/AdressCard'
+import { createPayment } from '../../../State/Payment/Action'
 
 const OrderSummary = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,10 @@ const OrderSummary = () => {
     useEffect(() => {
         dispatch(getOrderById(orderId))
     },[orderId])
+
+    const handleCheckout = () => {
+        dispatch(createPayment(orderId))
+    }
     return (
         <div>
             <div className='p-5 shadow-lg rounded-s-md border'>
@@ -51,7 +56,9 @@ const OrderSummary = () => {
 
                             </div>
                             <Button variant='contained' className='w-full mt-5'
-                                    sx={{px: "2.5rem", py: ".7rem", bgcolor: "#9155fd"}}>
+                                    sx={{px: "2.5rem", py: ".7rem", bgcolor: "#9155fd"}}
+                                    onClick={handleCheckout}
+                                    >
                                 Checkout
                             </Button>
                         </div>

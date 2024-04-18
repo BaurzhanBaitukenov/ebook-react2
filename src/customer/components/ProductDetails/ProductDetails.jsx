@@ -88,13 +88,13 @@ export default function ProducDetails() {
     return (
         <div className="bg-white">
             <div className="pt-6">
-                <nav aria-label="Breadcrumb">
+                {/* <nav aria-label="Breadcrumb">
                     <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                         {product.breadcrumbs.map((breadcrumb) => (
                             <li key={breadcrumb.id}>
                                 <div className="flex items-center">
                                     <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
-                                        {breadcrumb.name}
+                                    {products?.secondLavelCategory}
                                     </a>
                                     <svg
                                         width={16}
@@ -110,12 +110,12 @@ export default function ProducDetails() {
                             </li>
                         ))}
                         <li className="text-sm">
-                            <a href={product.href} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-                                {product.name}
+                            <a href={products.product?.thirdLavelCategory} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
+                                {products.product?.thirdLavelCategory}
                             </a>
                         </li>
                     </ol>
-                </nav>
+                </nav> */}
                 <section className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 px-4 pt-10'>
                     {/* Image gallery */}
                     <div className="flex flex-col items-center">
@@ -126,7 +126,7 @@ export default function ProducDetails() {
                                 className="h-full w-full object-cover object-center"
                             />
                         </div>
-                        <div className="flex flex-wrap space-x-5 justify-center">
+                        {/* <div className="flex flex-wrap space-x-5 justify-center">
                             {product.images.map((item) => <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
                                 <img
                                     src={item.src}
@@ -135,7 +135,7 @@ export default function ProducDetails() {
                                 />
                             </div>)}
 
-                        </div>
+                        </div> */}
 
                     </div>
                     {/* Product info */}
