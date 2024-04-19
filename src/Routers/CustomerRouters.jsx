@@ -10,6 +10,7 @@ import Checkout from '../customer/components/Checkout/Checkout'
 import Order from '../customer/components/Order/Order'
 import OrderDetails from '../customer/components/Order/OrderDetails'
 import PaymentSuccess from '../customer/components/Payment/PaymentSuccess'
+import UserProfile from '../customer/components/Profile/UserProfile'
 
 
 const CustomerRouter = () => {
@@ -23,6 +24,7 @@ const CustomerRouter = () => {
             <Route path='/register' element={<HomePage/>}></Route>
 
                 <Route path='/' element={<HomePage/>}></Route>
+                <Route path='/profile' element={<UserProfile/>}></Route>
                 <Route path='/cart' element={<Cart/>}></Route>
                 <Route path='/:lavelOne/:lavelTwo/:lavelThree' element={<Product/>}></Route>
                 <Route path='/product/:productId' element={<ProducDetails/>}></Route>

@@ -53,6 +53,14 @@ export default function Navigation() {
     close();
   };
 
+  const handleCartClick = () => {
+    navigate(`/cart`);
+  };
+
+  const handleProfileClick = () => {
+    navigate(`/profile`);
+  };
+
   useEffect(() => {
     if(jwt) {
         dispatch(getUser(jwt))
@@ -449,6 +457,9 @@ export default function Navigation() {
                         <MenuItem onClick={() => navigate("/account/order")}>
                           My Orders
                         </MenuItem>
+                        <MenuItem onClick={() => navigate("/profile")}>
+                          Profile
+                        </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                       </Menu>
                     </div>
@@ -484,7 +495,7 @@ export default function Navigation() {
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      2
+                      <p onClick={() =>handleCartClick()}>Cart</p>
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Button>

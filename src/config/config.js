@@ -1,7 +1,7 @@
 import axios from "axios"
 
-// export const API_BASE_URL = "http://localhost:1111"
-export const API_BASE_URL = "https://ebook-springboot-production.up.railway.app"
+export const API_BASE_URL = "http://localhost:1111"
+// export const API_BASE_URL = "https://ebook-springboot-production.up.railway.app"
 
 const jwt = localStorage.getItem("jwt")
 
