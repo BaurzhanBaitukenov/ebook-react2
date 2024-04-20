@@ -41,6 +41,7 @@ const CreateProductForm = () => {
     description: "",
   });
 const dispatch=useDispatch();
+
 const jwt=localStorage.getItem("jwt")
 
   const handleChange = (e) => {
@@ -68,13 +69,13 @@ const jwt=localStorage.getItem("jwt")
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct({data:productData,jwt}))
+    dispatch(createProduct(productData))
     console.log(productData);
   };
 
 
   return (
-    <Fragment className="createProductContainer ">
+    <div className="p-10">
       <Typography
         variant="h3"
         sx={{ textAlign: "center" }}
@@ -174,7 +175,7 @@ const jwt=localStorage.getItem("jwt")
                 onChange={handleChange}
                 label="Top Level Category"
               >
-                <MenuItem value="men">Category</MenuItem>
+                <MenuItem value="category">Category</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -187,7 +188,7 @@ const jwt=localStorage.getItem("jwt")
                 onChange={handleChange}
                 label="Second Level Category"
               >
-                <MenuItem value="clothing">Books</MenuItem>
+                <MenuItem value="books">Books</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -200,7 +201,9 @@ const jwt=localStorage.getItem("jwt")
                 onChange={handleChange}
                 label="Third Level Category"
               >
-                <MenuItem value="top">New Trend</MenuItem>
+                <MenuItem value="new_trend">New Trend</MenuItem>
+                <MenuItem value="bestseller">Bestseller</MenuItem>
+                <MenuItem value="comics">Comics</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -216,6 +219,7 @@ const jwt=localStorage.getItem("jwt")
               value={productData.description}
             />
           </Grid>
+
           {productData.language.map((language, index) => (
             <Grid container item spacing={3} >
               <Grid item xs={12} sm={6}>
@@ -254,7 +258,7 @@ const jwt=localStorage.getItem("jwt")
           </Grid>
         </Grid>
       </form>
-    </Fragment>
+    </div>
   );
 };
 
