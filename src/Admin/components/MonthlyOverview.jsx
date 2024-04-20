@@ -11,25 +11,25 @@ const salesData = [
     {
         stats: '245K',
         tittle:"Sales",
-        color:"primary",
+        color:"#E5D68A",
         icon:<TrendingUp sx={{fontSize:"1.75rem"}}/>
     },
     {
         stats: '12.5K',
         tittle:"Customer",
-        color:"success",
+        color:"#22CB5C",
         icon:<AccountCircleIcon sx={{fontSize:"1.75rem"}}/>
     },
     {
         stats: '1.54K',
         tittle:"Products",
-        color:"warning",
+        color:"#DE4839",
         icon:<AutoStoriesIcon sx={{fontSize:"1.75rem"}}/>
     },
     {
         stats: '88K',
         tittle:"Revenue",
-        color:"info",
+        color:"#12B0E8",
         icon:<MonetizationOnIcon sx={{fontSize:"1.75rem"}}/>
     }
 ]
@@ -45,8 +45,8 @@ const renderStats=()=>{
                     width:44,
                     height:44,
                     boxShadow:3,
-                    color:"white",
-                    background:`${item.color}`
+                    color:"common.white",
+                    backgroundColor:`${item.color}`
                 }}>
                     {item.icon}
                 </Avatar>
@@ -75,12 +75,11 @@ const MonthlyOverview = () => {
                 subheader={
                     <Typography variant='body2'>
 
-                        <Box component="span" sx={{fontWeight:600, color:'text.primary'}}>
+                        <Box component="span" sx={{fontWeight:600}}>
 
-                            Total 48.5% groth
+                            Total 48.5% groth this month
 
                         </Box>
-                        this month
                     </Typography>
                 }
                 titleTypographyProps={{
