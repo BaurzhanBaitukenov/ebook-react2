@@ -36,6 +36,8 @@ const PaymentSuccess = () => {
 
     }, [orderId, paymentId])
 
+    
+
 
     console.log("orderId", orderId)
     return (
@@ -74,6 +76,7 @@ const PaymentSuccess = () => {
                                 <span>Language: {item.language}</span>
                                 </div>
                                 <p>Author: {item.product.author}</p>
+                                {item.product.quantity - 1}
                                 <p>₸{item.price}</p>
                             </div>
 

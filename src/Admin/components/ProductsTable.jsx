@@ -16,7 +16,7 @@ const ProductsTable = () => {
 
     useEffect(() => {
         const data = {
-            category: "new_trend",
+            category: "",
             genres: [],
             languages: [],
             minPrice: 0,

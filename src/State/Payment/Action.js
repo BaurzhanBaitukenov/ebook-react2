@@ -1,5 +1,5 @@
 import { api } from "../../config/config";
-import { CREATE_PAYMENT_FAILURE, CREATE_PAYMENT_REQUEST, CREATE_PAYMENT_SUCCESS, UPDATE_PAYMENT_FAILURE, UPDATE_PAYMENT_REQUEST } from "./ActionType"
+import { CREATE_PAYMENT_FAILURE, CREATE_PAYMENT_REQUEST, CREATE_PAYMENT_SUCCESS, UPDATE_PAYMENT_FAILURE, UPDATE_PAYMENT_REQUEST, UPDATE_PRODUCT_QUANTITY_FAILURE, UPDATE_PRODUCT_QUANTITY_REQUEST, UPDATE_PRODUCT_QUANTITY_SUCCESS } from "./ActionType"
 
 export const createPayment = (orderId) => async (dispatch) => {
 
@@ -31,4 +31,4 @@ export const updatePayment = (reqData) => async (dispatch) => {
     } catch(error) {
         dispatch({type:UPDATE_PAYMENT_FAILURE, payload:error.message})
     }
-} 
+}

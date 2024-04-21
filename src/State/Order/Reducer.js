@@ -5,6 +5,12 @@ import {
   GET_ORDER_BY_ID_REQUEST,
   GET_ORDER_BY_ID_SUCCESS,
   GET_ORDER_BY_ID_FAILURE,
+  GET_ORDERS_BY_USER_ID_REQUEST,
+  GET_ORDERS_BY_USER_ID_SUCCESS,
+  GET_ORDERS_BY_USER_ID_FAILURE,
+  GET_ORDER_HISTORY_REQUEST,
+  GET_ORDER_HISTORY_SUCCESS,
+  GET_ORDER_HISTORY_FAILURE,
 } from './ActionType';
 
 const initialState={
@@ -55,6 +61,22 @@ export const orderReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+      case GET_ORDER_HISTORY_REQUEST:
+            return {
+              loading: true,
+              orders: [],
+            };
+          case GET_ORDER_HISTORY_SUCCESS:
+            return {
+              loading: false,
+              orders: action.payload,
+            };
+          case GET_ORDER_HISTORY_FAILURE:
+            return {
+              loading: false,
+              error: action.payload,
+              orders: [],
+            };
     default:
       return state;
   }

@@ -37,7 +37,7 @@ const OrderDetails = () => {
                                 <span>Language: KZ</span>
                                 </p>
 
-                                <p>₸199</p>
+                                <p>₸199312</p>
                             </div>
                         </div>
 
