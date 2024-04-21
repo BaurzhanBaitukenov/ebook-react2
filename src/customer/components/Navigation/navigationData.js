@@ -117,5 +117,6 @@ export const navigation = {
     pages: [
         {name: 'Company', href: '#'},
         {name: 'Stores', href: '#'},
+        {name: 'Library', href: '/library'},
     ],
 }

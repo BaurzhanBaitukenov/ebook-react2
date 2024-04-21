@@ -475,6 +475,7 @@ export default function Navigation() {
                   <p className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
+                      onClick={() =>handleCartClick()}  
                       className="h-6 w-6"
                       aria-hidden="true"
                     />
@@ -490,9 +491,10 @@ export default function Navigation() {
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
+                      onClick={() =>handleCartClick()}
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      <p onClick={() =>handleCartClick()}>Cart</p>
+                      {/* <p onClick={() =>handleCartClick()}>Cart</p> */}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Button>
