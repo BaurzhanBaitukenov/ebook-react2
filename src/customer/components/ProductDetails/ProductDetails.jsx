@@ -69,19 +69,19 @@ export default function ProducDetails() {
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useDispatch();
-    const {products} = useSelector(store => store)
+    const { products } = useSelector(store => store)
 
     console.log("---- ", params.productId)
 
     const handleAddToCart = () => {
-        const data = {productId:params.productId, language:selectedLanguage.name}
+        const data = { productId: params.productId, language: selectedLanguage.name }
         console.log("data - ", data)
         dispatch(addItemToCart(data))
         navigate("/cart")
     }
 
     useEffect(() => {
-        const data = {productId:params.productId}
+        const data = { productId: params.productId }
         dispatch(findProductById(data))
     }, [params.productId])
 
@@ -144,10 +144,10 @@ export default function ProducDetails() {
                         <div className="lg:col-span-2">
                             <h1 className="text-lg lg:text-xl font-semibold text-gray-900">{products.product?.title}</h1>
                             <h1 className='text-lg lg:text-xl text-gray-900 opacity-90 pt-1'>
-                            Author: {products.product?.author}
+                                Author: {products.product?.author}
                             </h1>
                             <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>
-                            Genre: {products.product?.genre}
+                                Genre: {products.product?.genre}
                             </h1>
                         </div>
 
@@ -288,9 +288,10 @@ export default function ProducDetails() {
                         <Grid container spacing={7}>
 
                             <Grid item xs={7}>
-                                <div className='space-y-5'>
-                                    {[1, 1, 1].map((item) => <ProductReviewCard />)}
-
+                                <div className="space-y-5">
+                                    {products.product?.reviews.map((item, i) => (
+                                        <ProductReviewCard item={item} />
+                                    ))}
                                 </div>
                             </Grid>
 
@@ -370,7 +371,7 @@ export default function ProducDetails() {
                 {/* similar products */}
                 <section className='pt-10'>
 
-                <h1 className='py-5 text-xl font-bold flex justify-center'>Similar Products</h1>
+                    <h1 className='py-5 text-xl font-bold flex justify-center'>Similar Products</h1>
 
                     <div className='flex flex-wrap space-y-5'>
                         {book_first.map((item) => <HomeSectionCard key={item.id} product={item} />)}

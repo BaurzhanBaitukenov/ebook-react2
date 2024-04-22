@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import AdressCard from '../AdressCard/AdressCard'
 import { Box, Button, Grid } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
+import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import OrderTracker from './OrderTracker'
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,14 +36,14 @@ const OrderDetails = () => {
                     activeStep={
                         order.order
                             ? order.order?.orderStatus === "PLACED"
-                                ? 1
+                                ? 0
                                 : order.order?.orderStatus === "CONFIRMED"
-                                    ? 2
+                                    ? 1
                                     : order.order?.orderStatus === "SHIPPED"
-                                        ? 3
+                                        ? 2
                                         : order.order?.orderStatus === "PENDING"
-                                            ? 1
-                                            : 5
+                                            ? 0
+                                            : 4
                             : 1 // Если order.order не определен, устанавливаем значение "PLACED"
                     }
                 />
@@ -88,11 +89,19 @@ const OrderDetails = () => {
 
                     <Grid item>
 
-                        <Box sx={{ color: deepPurple[500] }}>
-
-                            <StarBorderIcon sx={{ fontSize: "2rem" }} className='px-2' />
-                            <span>Rate & Review Product</span>
-                        </Box>
+                        {
+                            <Box
+                                sx={{ color: deepPurple[500] }}
+                                onClick={() => navigate(`/account/rate/${item.product.id}`)}
+                                className="flex items-center cursor-pointer"
+                            >
+                                <StarIcon
+                                    sx={{ fontSize: "2rem" }}
+                                    className="px-2 text-5xl"
+                                />
+                                <span>Rate & Review Product</span>
+                            </Box>
+                        }
 
                     </Grid>
 

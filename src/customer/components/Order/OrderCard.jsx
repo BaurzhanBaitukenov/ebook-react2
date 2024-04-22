@@ -39,10 +39,6 @@ const OrderCard = ({ item, order }) => {
           <p className="space-y-2 font-semibold">
             {order?.orderStatus === "DELIVERED" ? (
               <>
-                {/* <FiberManualRecordIcon
-                    sx={{ width: "15px", height: "15px" }}
-                    className="text-green-600 p-0 mr-2 text-sm"
-                  /> */}
                 <span>Delivered On Mar 03</span>
 
               </>
@@ -62,8 +58,16 @@ const OrderCard = ({ item, order }) => {
               onClick={() => navigate(`/account/rate/{id}`)}
               className="flex items-center text-blue-600 cursor-pointer"
             >
-              <StarIcon sx={{ fontSize: "2rem" }} className="px-2 text-5xl" />
-              <span>Rate & Review Product</span>
+              <p className="text-xs">Your Item Has Been Delivered</p>
+              {item.orderStatus === "DELIVERED" && (
+                <div
+                onClick={() => navigate(`/account/rate/{id}`)}
+                className="flex items-center text-blue-600 cursor-pointer"
+              >
+                <StarIcon sx={{ fontSize: "2rem" }} className="px-2 text-5xl" />
+                <span>Rate & Review Product</span>
+              </div>
+              )}
             </div>
           )}
         </Grid>

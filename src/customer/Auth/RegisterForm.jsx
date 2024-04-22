@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, Grid, TextField, InputLabel, FormControl, MenuItem, Select } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
@@ -8,16 +8,16 @@ const RegisterForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const jwt = localStorage.getItem("jwt")
-    const {auth} = useSelector(store => store)
+    const { auth } = useSelector(store => store)
 
     useEffect(() => {
-        if(jwt) {
+        if (jwt) {
             dispatch(getUser(jwt))
         }
-        
-    },[jwt, auth.jwt])
 
-    const handleSubmit =(event) => {
+    }, [jwt, auth.jwt])
+
+    const handleSubmit = (event) => {
         event.preventDefault()
 
         const data = new FormData(event.currentTarget)
@@ -27,6 +27,7 @@ const RegisterForm = () => {
             lastName: data.get("lastName"),
             email: data.get("email"),
             password: data.get("password"),
+            role: data.get("role")
         }
 
         dispatch(register(userData))
@@ -37,7 +38,7 @@ const RegisterForm = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={6}>
                         <TextField
                             required
                             id='firstName'
@@ -71,26 +72,41 @@ const RegisterForm = () => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <TextField
-                            required
-                            id='password'
-                            name='password'
-                            label='Password'
-                            fullWidth
-                            autoComplete='password'
-                        />
-                    </Grid>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                label="Role"
+                                name="role"
+                            >
+                                <MenuItem value={"ROLE_ADMIN"}>Admin</MenuItem>
+                                <MenuItem value={"ROLE_CUSTOMER"}>Customer</MenuItem>
+                            </Select>
+                        </FormControl>
 
-                    <Grid item xs={12}>
-                        <Button
-                            className='bg-[#9155FD] w-full'
-                            type='sumbit'
-                            variant='contained'
-                            size='large'
-                            sx={{ padding: ".8rem 0", bgcolor:"#9155FD"}}
-                        >
-                            Register
-                        </Button>
+                        <Grid item xs={12}>
+                            <TextField
+                                required
+                                id='password'
+                                name='password'
+                                label='Password'
+                                fullWidth
+                                autoComplete='password'
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Button
+                                className='bg-[#9155FD] w-full'
+                                type='sumbit'
+                                variant='contained'
+                                size='large'
+                                sx={{ padding: ".8rem 0", bgcolor: "#9155FD" }}
+                            >
+                                Register
+                            </Button>
+                        </Grid>
                     </Grid>
                 </Grid>
             </form>

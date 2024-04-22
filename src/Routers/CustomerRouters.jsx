@@ -12,6 +12,9 @@ import OrderDetails from '../customer/components/Order/OrderDetails'
 import PaymentSuccess from '../customer/components/Payment/PaymentSuccess'
 import UserProfile from '../customer/components/Profile/UserProfile'
 import Library from '../customer/components/Library/Library'
+import NotFound from '../customer/pages/Notfound'
+import Support from '../customer/components/Support/Support'
+import RateProduct from '../customer/components/ReviewProduct/RateProduct'
 
 
 const CustomerRouter = () => {
@@ -27,14 +30,16 @@ const CustomerRouter = () => {
                 <Route path='/' element={<HomePage/>}></Route>
                 <Route path='/profile' element={<UserProfile/>}></Route>
                 <Route path='/cart' element={<Cart/>}></Route>
+                <Route path='/support' element={<Support/>}></Route>
                 <Route path='/library' element={<Library/>}></Route>
                 <Route path='/:lavelOne/:lavelTwo/:lavelThree' element={<Product/>}></Route>
                 <Route path='/product/:productId' element={<ProducDetails/>}></Route>
                 <Route path='/checkout' element={<Checkout/>}></Route>
                 <Route path='/account/order' element={<Order/>}></Route>
                 <Route path='/account/order/:orderId' element={<OrderDetails/>}></Route>
+                <Route path="/account/rate/:productId" element={<RateProduct />}></Route>
                 <Route path='/payment/:orderId' element={<PaymentSuccess/>}></Route>
-
+                <Route path="*" element={<NotFound />} />
 
             </Routes>
             <div>

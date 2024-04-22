@@ -96,7 +96,7 @@ export default function Product() {
           minDiscount: discount || 0,
           sort: sortValue || "price_low",
           pageNumber: pageNumber - 1,
-          pageSize: 4,
+          pageSize: 10,
           stock: stock,
         };
         dispatch(findProducts(data));
@@ -269,11 +269,6 @@ export default function Product() {
                             </button>
                         </div>
                     </div>
-
-                    {/* <button
-                className="mt-4 mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                onClick={handleResetFilters}
-            ></button> */}
 
                     <section aria-labelledby="products-heading" className="pb-24 pt-6">
                         <h2 id="products-heading" className="sr-only">
