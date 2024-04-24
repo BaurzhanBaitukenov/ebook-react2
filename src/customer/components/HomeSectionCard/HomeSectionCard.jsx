@@ -1,12 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const HomeSectionCard = ({product}) => {
-    
+    const navigate = useNavigate();
     return (
-    <div className='cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg 
+    <div onClick={() => navigate(`/books/category/new_trend`)} className='cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg 
     overflow-hidden w-[15rem] mx-3 border'>
 
         <div className='h-[13rem] w-[10rem]'>

@@ -15,6 +15,8 @@ import Library from '../customer/components/Library/Library'
 import NotFound from '../customer/pages/Notfound'
 import Support from '../customer/components/Support/Support'
 import RateProduct from '../customer/components/ReviewProduct/RateProduct'
+import HomePageCommunication from '../customer/components/Communication/HomePageCommunication/HomePageCommunication'
+import ProfileCommunication from '../customer/components/Communication/ProfileCommunication/ProfileCommunication'
 
 
 const CustomerRouter = () => {
@@ -40,6 +42,10 @@ const CustomerRouter = () => {
                 <Route path="/account/rate/:productId" element={<RateProduct />}></Route>
                 <Route path='/payment/:orderId' element={<PaymentSuccess/>}></Route>
                 <Route path="*" element={<NotFound />} />
+
+                {/* Communication */}
+                {/* <Route path='/communication' element={<HomePageCommunication/>}></Route>
+                <Route path='/communication/profile/:userId' element={<ProfileCommunication/>}></Route> */}
 
             </Routes>
             <div>

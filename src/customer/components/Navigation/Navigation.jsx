@@ -53,6 +53,10 @@ export default function Navigation() {
     close();
   };
 
+  const handleCommunicationClick = () => {
+    navigate("/communication")
+  }
+
   const handleCartClick = () => {
     navigate(`/cart`);
   };
@@ -411,6 +415,18 @@ export default function Navigation() {
                   ))}
                 </div>
               </Popover.Group>
+
+              <div className="ml-4 flow-root lg:ml-6">
+                  <Button
+                    variant="outlined"
+                    className="group -m-2 flex items-center p-2"
+                  >
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                      <p onClick={() =>handleCommunicationClick()}>Share your impressions of the book with us</p>
+                    </span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </Button>
+              </div>
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">

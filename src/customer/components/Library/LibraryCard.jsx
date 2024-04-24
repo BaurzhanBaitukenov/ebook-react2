@@ -1,13 +1,18 @@
-import { Grid } from '@mui/material'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Button, Grid } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LibraryCard = ({ item, order, product }) => {
+    const navigate = useNavigate();
 
-    const navigate = useNavigate()
+    const handleDownloadClick = (e) => {
+        // Остановить всплытие события, чтобы предотвратить переход по ссылке /product/id
+        e.stopPropagation();
+        // Перенаправить на страницу загрузки
+        navigate(`/download`);
+    };
 
     return (
-
         <div>
             <div onClick={() => navigate(`/product/${item.product?.id}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
                 <Grid item xs={6}>
@@ -24,11 +29,14 @@ const LibraryCard = ({ item, order, product }) => {
                         <p className="opacity-80 text-xs font-semibold space-x-5">
                             <span>Language: {item?.language}</span>
                         </p>
+
+                        {/* Используйте handleDownloadClick вместо прямой навигации */}
+                        <Button onClick={handleDownloadClick} variant='outlined'>Download</Button>
                     </div>
                 </Grid>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LibraryCard
+export default LibraryCard;

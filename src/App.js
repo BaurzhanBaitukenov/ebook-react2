@@ -11,11 +11,13 @@ import OrderDetails from './customer/components/Order/OrderDetails';
 import { Route, Routes } from 'react-router-dom';
 import CustomerRouter from './Routers/CustomerRouters';
 import AdminRouters from './Routers/AdminRouters';
+import CommunicationRouters from './Routers/CommunicationRouters';
 function App() {
   return (
     <div className="">
 
       <Routes>
+      <Route path='/communication/*' element={<CommunicationRouters />} />
         <Route path='/*' element={<CustomerRouter/>}></Route>
         <Route path='/admin/*' element={<AdminRouters/>}></Route>
       </Routes>
