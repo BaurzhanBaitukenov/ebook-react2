@@ -26,13 +26,13 @@ export default function Navigation() {
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
-  const {auth} = useSelector(store => store)
+  const { auth } = useSelector(store => store)
   const dispatch = useDispatch();
   const location = useLocation();
 
 
 
-  
+
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -45,7 +45,7 @@ export default function Navigation() {
   };
   const handleClose = () => {
     setOpenAuthModal(false);
-   
+
   };
 
   const handleCategoryClick = (category, section, item, close) => {
@@ -66,20 +66,20 @@ export default function Navigation() {
   };
 
   useEffect(() => {
-    if(jwt) {
-        dispatch(getUser(jwt))
+    if (jwt) {
+      dispatch(getUser(jwt))
     }
-    
-},[jwt, auth.jwt])
+
+  }, [jwt, auth.jwt])
 
 
   useEffect(() => {
 
-    if(auth.user) {
+    if (auth.user) {
       handleClose()
     }
-    if(location.pathname === "/login" || location.pathname === "/register") {
-      navigate(-1)
+    if (location.pathname === "/login" || location.pathname === "/register") {
+        // navigate("/")
     }
 
   }, [auth.user])
@@ -231,7 +231,7 @@ export default function Navigation() {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
                     <a
-                      href="/"
+                      href="/login"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
@@ -416,16 +416,16 @@ export default function Navigation() {
                 </div>
               </Popover.Group>
 
-              <div className="ml-4 flow-root lg:ml-6">
-                  <Button
-                    variant="outlined"
-                    className="group -m-2 flex items-center p-2"
-                  >
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      <p onClick={() =>handleCommunicationClick()}>Share your impressions of the book with us</p>
-                    </span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </Button>
+              <div className="ml-auto mr-4 flex items-center"> {/* Добавлен класс ml-auto для центрирования кнопки */}
+                <Button
+                  variant="contained"
+                  className="group -m-2 flex items-center p-2 bg-gray-800 rounded-md" // Добавлены стили для заднего цвета и закругленных углов
+                >
+                  <span className="ml-2 text-sm font-medium text-white group-hover:text-gray-800"> {/* Изменен цвет текста */}
+                    <p onClick={() => handleCommunicationClick()}>Share your impressions of the book with us</p>
+                  </span>
+                  <span className="sr-only">items in cart, view bag</span>
+                </Button>
               </div>
 
               <div className="ml-auto flex items-center">
@@ -465,8 +465,8 @@ export default function Navigation() {
                           "aria-labelledby": "basic-button",
                         }}
                       >
-              
-                        
+
+
                         <MenuItem onClick={() => navigate("/account/order")}>
                           My Orders
                         </MenuItem>
@@ -478,7 +478,8 @@ export default function Navigation() {
                     </div>
                   ) : (
                     <Button
-                      onClick={handleOpen}
+                      // onClick={handleOpen}
+                      onClick={() => navigate("/login")}
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       Signin
@@ -491,7 +492,7 @@ export default function Navigation() {
                   <p className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
-                      onClick={() =>handleCartClick()}  
+                      onClick={() => handleCartClick()}
                       className="h-6 w-6"
                       aria-hidden="true"
                     />
@@ -501,13 +502,13 @@ export default function Navigation() {
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <Button
-                    
+
                     className="group -m-2 flex items-center p-2"
                   >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
-                      onClick={() =>handleCartClick()}
+                      onClick={() => handleCartClick()}
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                       {/* <p onClick={() =>handleCartClick()}>Cart</p> */}
@@ -520,7 +521,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
-      <AuthModal handleClose={handleClose} open={openAuthModal} />
+      {/* <AuthModal handleClose={handleClose} open={openAuthModal} /> */}
     </div>
   );
 }

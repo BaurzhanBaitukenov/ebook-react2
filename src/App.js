@@ -12,7 +12,26 @@ import { Route, Routes } from 'react-router-dom';
 import CustomerRouter from './Routers/CustomerRouters';
 import AdminRouters from './Routers/AdminRouters';
 import CommunicationRouters from './Routers/CommunicationRouters';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getUser } from './State/Auth/Action';
+import SigninForm from './customer/components/Authentication/SinginForm';
+import { useNavigate } from 'react-router-dom/dist';
 function App() {
+  const jwt = localStorage.getItem("jwt")
+  const {auth} = useSelector(store => store)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+
+    if(jwt) {
+      dispatch(getUser(jwt))
+      navigate("/")
+    }
+
+  },[auth.jwt])
+
   return (
     <div className="">
 

@@ -17,6 +17,7 @@ import Support from '../customer/components/Support/Support'
 import RateProduct from '../customer/components/ReviewProduct/RateProduct'
 import HomePageCommunication from '../customer/components/Communication/HomePageCommunication/HomePageCommunication'
 import ProfileCommunication from '../customer/components/Communication/ProfileCommunication/ProfileCommunication'
+import Authentication from '../customer/components/Authentication/Authentication'
 
 
 const CustomerRouter = () => {
@@ -26,8 +27,8 @@ const CustomerRouter = () => {
             <Navigation/>
             </div>
             <Routes>
-            <Route path='/login' element={<HomePage/>}></Route>
-            <Route path='/register' element={<HomePage/>}></Route>
+            <Route path='/login' element={<Authentication/>}></Route>
+            <Route path='/register' element={<Authentication/>}></Route>
 
                 <Route path='/' element={<HomePage/>}></Route>
                 <Route path='/profile' element={<UserProfile/>}></Route>

@@ -9,6 +9,7 @@ import { logout } from '../../../../State/Auth/Action';
 
 const NavigationCommunication = () => {
 
+    const { auth } = useSelector(store => store)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
@@ -23,8 +24,12 @@ const NavigationCommunication = () => {
         dispatch(logout())
     }
 
+    const handleLoginClick = () => {
+        navigate("/login")
+    }
+
     const navigate = useNavigate();
-    
+
     const { userProfile } = useSelector((state) => state.user);
 
     useEffect(() => {
@@ -37,7 +42,7 @@ const NavigationCommunication = () => {
                 <div className='space-y-6'>
 
                     {navigationCommunication.map((item) => <div className='cursor-pointer flex space-x-3 
-                    items-center' onClick={() => item.title === "Profile" ? navigate(`/communication/profile/${6}`) :navigate(item.path)}>
+                    items-center' onClick={() => item.title === "Profile" ? navigate(`/communication/profile/${6}`) : navigate(item.path)}>
                         {item.icon}
                         <p className='text-xl'>{item.title}</p>
                     </div>)}
@@ -60,8 +65,11 @@ const NavigationCommunication = () => {
                         src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDnAV2195eKjdsIWb9qODnuYgxUnwJ0exESA&usqp=CAU'
                     />
                     <div>
-                        <span> Baurzhan</span>
-                        <span className='opacity-70'> baurzhan@gmail.com</span>
+                        <div>
+                            <span> {auth.user?.firstName}</span>
+                            <span> {auth.user?.lastName}</span>
+                            <p className='opacity-70'>{auth.user?.email}</p>
+                        </div>
                     </div>
                     <div>
                         <Button
@@ -82,6 +90,7 @@ const NavigationCommunication = () => {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
+                            <MenuItem onClick={handleLoginClick}>Login</MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
                     </div>

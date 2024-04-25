@@ -12,11 +12,6 @@ import BookIcon from '@mui/icons-material/Book';
 
 export const navigationCommunication = [
     {
-        title: "Go Back to the E-book store",
-        icon:<BookIcon/>,
-        path:"/"
-    },
-    {
         title: "Home",
         icon:<HomeIcon/>,
         path:"/communication"
@@ -68,5 +63,10 @@ export const navigationCommunication = [
         title: "More",
         icon:<PendingIcon/>,
         path:"/communication/more"
+    },
+    {
+        title: "Go Back to the E-VBook store",
+        icon:<BookIcon/>,
+        path:"/"
     },
 ]
