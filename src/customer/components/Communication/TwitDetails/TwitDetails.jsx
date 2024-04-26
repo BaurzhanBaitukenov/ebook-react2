@@ -6,38 +6,39 @@ import { Divider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { findTwitsById } from '../../../../State/Twit/Action';
 
-const TwitDetails = () => {
+const TwitDetail = () => {
+    const param=useParams();
+    const dispatch=useDispatch();
+    const {twit,theme}=useSelector(store=>store);
+    const navigate=useNavigate();
 
-    const navigate = useNavigate();
+    const handleBack = () => navigate(-1)
 
-    const handleBack = () => navigate(-1);
-    const dispatch = useDispatch();
-    const {id} = useParams()
-    const {twit} = useSelector(store => store);
+    useEffect(()=>{
+        dispatch(findTwitsById(param.id))
+    },[param.id])
 
-    useEffect(() => {
-        if(id) {
-            dispatch(findTwitsById(id))
-        }
-    },[])
+  return (
+    <div>
+        <section
+        className={`z-50 flex items-center sticky top-0 bg-white bg-opacity-95`}
+      >
+        <KeyboardBackspaceIcon
+          className="cursor-pointer"
+          onClick={handleBack}
+        />
+        <h1 className="py-5 text-xl font-bold opacity-90 ml-5">
+          {"Twit"}
+        </h1>
+      </section>
+       {twit.twit && <TweetCard twit={twit.twit}/>}
+       <Divider sx={{margin:"2rem 0rem"}}/>
 
-    return (
-        <React.Fragment>
-            <section className={`bg-white z-50 flex items-center sticky top-0 bg-opacity-95`}>
-                <KeyboardBackspaceIcon className='cursor-pointer' onClick={handleBack} />
-                <h1 className='py-5 text-xl font-bold opacity-90 ml-5'>Tweet</h1>
-            </section>
+       <div>
+        {twit.twit?.replyTwits.slice().reverse().map((item)=><TweetCard twit={item}/>)}
+       </div>
+    </div>
+  )
+}
 
-            <section>
-                <TweetCard item={twit.twit}/>
-                <Divider sx={{margin:"2rem 0rem"}}/>
-            </section>
-
-            <section>
-                {twit.twit?.replyTwits.map((item) => <TweetCard item={item}/>)}
-            </section>
-        </React.Fragment>
-    );
-};
-
-export default TwitDetails;
+export default TwitDetail

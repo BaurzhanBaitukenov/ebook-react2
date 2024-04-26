@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { logout } from '../../../../State/Auth/Action';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
@@ -12,150 +12,176 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FavoriteOutlined } from '@mui/icons-material';
 import ReplyModal from './ReplyModal';
-import { createReTweet, likeTweet } from '../../../../State/Twit/Action';
+import { createRetweet, deleteTweet, likeTweet } from '../../../../State/Twit/Action';
 
-const TweetCard = ({item}) => {
-    const navigate = useNavigate();
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+const TweetCard = ({ twit }) => {
     const dispatch = useDispatch();
-
-    const [openReplyModal, setOpenReplyModal] = useState(false);
-    const handleOpenReplyModel = () => setOpenReplyModal(true)
-    const handleCloseReplyModal = () => setOpenReplyModal(false)
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleDelete = () => {
-        console.log("delete tweet")
-        handleClose()
-    };
-
-    const handleEdit = () => {
-        console.log("edit tweet")
-        handleClose()
-    };
-
-    const handleCreateRetweet = () => {
-        dispatch(createReTweet(item?.id))
-        console.log("handle create retweet")
-    }
-
-    const handleLiketweet = () => {
-        dispatch(likeTweet(item?.id))
-        console.log("handle like tweet")
-    }
-
-    return (
-        <React.Fragment>
-
-            {/* <div className='flex items-center font-semibold text-gray-700 py-2'>
-                <RepeatIcon/>
-                <p>You Retween</p>
-            </div> */}
-
-            <div className='flex space-x-5'>
-                <Avatar
-                    onClick={() => navigate(`/communication/profile/${item?.user.id}`)}
-                    className='cursor-pointer'
-                    alt='username'
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLShTvsCdH7H-7WNQ9cgk-s0o3pBXF4NC7g&usqp=CAU"
-                />
-                <div className='w-full'>
-                    <div className='flex justify-between items-center'>
-                        <div className='flex cursor-pointer items-center space-x-2'>
-
-                            <span className='font-semibold'>{item?.user?.firstName}</span>
-                            <span className='font-semibold'>{item?.user?.lastName}</span>
-                            <span className='text-gray-600'>{item?.user?.email}. 2m</span>
-                        </div>
-                        <div>
-                            <Button
-                                id="basic-button"
-                                aria-controls={open ? 'basic-menu' : undefined}
-                                aria-haspopup="true"
-                                aria-expanded={open ? 'true' : undefined}
-                                onClick={handleClick}
-                            >
-                                <MoreHorizIcon />
-                            </Button>
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={handleDelete}>Delete</MenuItem>
-                                <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                            </Menu>
-                        </div>
-
-                    </div>
-
-                    <div className='mt-2'>
-                        <div onClick={() => navigate(`/communication/twit/${item?.id}`)} className='cursor-pointer'>
-                            <p className='mb-2 p-0'>{item?.content}</p>
-                            <img className='w-[28rem] border border-gray-400 p-5 rounded-md'
-                                src={item?.image} alt="" />
-                        </div>
-
-                        <div className='py-5 flex flex-wrap justify-between items-center'>
-                            <div className='space-x-3 flex items-center text-gray-600'>
-                                <ChatBubbleOutlineIcon className='cursor-pointer' onClick={handleOpenReplyModel} />
-                                <p>{item?.totalReplies}</p>
-                            </div>
-
-                            <div className={`${item?.retwit ? "text-yellow-600" : "text-gray-600"} space-x-3 flex items-center`}>
-                                <RepeatIcon onClick={handleCreateRetweet} className='cursor-pointer' />
-                                <p>{item?.totalRetweets}</p>
-                            </div>
-
-                            <div className={`${
-                                item?.liked ? "text-pink-600" : "text-gray-600"
-                                } space-x-3 flex items-center`}
-                                >
-                                {item?.liked ? (
-                                <FavoriteOutlined
-                                    onClick={handleLiketweet} 
-                                    className='cursor-pointer' />
-                                    ) : (
-                                    <FavoriteIcon 
-                                        onClick={handleLiketweet} 
-                                        className='cursor-pointer' />)}
-                                <p>{item?.totalLikes}</p>
-                            </div>
-
-                            <div className='space-x-3 flex items-center text-gray-600'>
-                                <BarChartIcon className='cursor-pointer' onClick={handleOpenReplyModel} />
-                                <p>430</p>
-                            </div>
-
-                            <div className='space-x-3 flex items-center text-gray-600'>
-                                <FileUploadIcon className='cursor-pointer' onClick={handleOpenReplyModel} />
-                                <p>430</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <section>
-                <ReplyModal item={item} open={openReplyModal} handleClose={handleCloseReplyModal}/>
-            </section>
-
-        </React.Fragment>
+    const { auth } = useSelector((store) => store);
+    const [isLiked, setIsLiked] = useState(twit.liked);
+    const [likes, setLikes] = useState(twit.totalLikes);
+    const [isRetwit, setIsRetwit] = useState(
+      twit.retwitUsersId.includes(auth.user.id)
     );
-};
-
-export default TweetCard;
+    const [retwit, setRetwit] = useState(twit.totalRetweets);
+    const [openReplyModel, setOpenReplyModel] = useState();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const openDeleteMenu = Boolean(anchorEl);
+    const handleOpenDeleteMenu = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleCloseDeleteMenu = () => {
+      setAnchorEl(null);
+    };
+  
+    const handleLikeTweet = (num) => {
+      dispatch(likeTweet(twit.id));
+      setIsLiked(!isLiked);
+      setLikes(likes + num);
+    };
+    const handleCreateRetweet = () => {
+      dispatch(createRetweet(twit.id));
+      setRetwit(isRetwit ? retwit - 1 : retwit + 1);
+      setIsRetwit(!retwit);
+    };
+    const handleCloseReplyModel = () => setOpenReplyModel(false);
+  
+    const handleOpenReplyModel = () => setOpenReplyModel(true);
+    const handleNavigateToTwitDetial = () => navigate(`/communication/twit/${twit.id}`);
+  
+    const handleDeleteTwit = () => {
+       dispatch(deleteTweet(twit.id))
+      handleCloseDeleteMenu();
+    };
+   
+    return (
+      <div className="">
+        {auth.user?.id !== twit.user.id &&
+          location.pathname === `/communication/profile/${auth.user?.id}` && (
+            <div className="flex items-center font-semibold text-gray-700 py-2">
+              <RepeatIcon />
+              <p className="ml-3">You Retweet</p>
+            </div>
+          )}
+        <div className="flex space-x-5 ">
+          <Avatar
+            onClick={() => navigate(`/communication/profile/${twit.user.id}`)}
+            alt="Avatar"
+            src={twit.user.image}
+            className="cursor-pointer"
+          />
+          <div className="w-full">
+            <div className="flex justify-between items-center ">
+              <div
+                onClick={() => navigate(`/communication/profile/${twit.user.id}`)}
+                className="flex cursor-pointer items-center space-x-2"
+              >
+                <span className="font-semibold">{twit.user.firstName}</span>
+                <span className="font-semibold">{twit.user.lastName}</span>
+                <span className=" text-gray-600">
+                  @{twit.user.email} · 2m
+                </span>
+                {twit.user.verified && (
+                  <img
+                    className="ml-2 w-5 h-5"
+                    src="https://abs.twimg.com/responsive-web/client-web/verification-card-v2@3x.8ebee01a.png"
+                    alt=""
+                  />
+                )}
+              </div>
+              <div>
+                <Button onClick={handleOpenDeleteMenu}>
+                   <MoreHorizIcon
+                  id="basic-button"
+                  aria-controls={openDeleteMenu ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openDeleteMenu ? "true" : undefined}
+                 
+                />
+                </Button>
+               
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={openDeleteMenu}
+                  onClose={handleCloseDeleteMenu}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                 {twit.user.id ===auth.user.id &&  <MenuItem onClick={handleDeleteTwit}>Delete</MenuItem>}
+                  <MenuItem onClick={()=>navigate(`/communication/twit/${twit.id}`)}>Details</MenuItem>
+                </Menu>
+              </div>
+            </div>
+  
+            <div className="mt-2 ">
+              <div
+                className="cursor-pointer"
+                onClick={handleNavigateToTwitDetial}
+              >
+                <p className="mb-2 p-0 ">{twit.content}</p>
+               { twit.image && <img
+                  className="w-[28rem] border border-gray-400 p-5 rounded-md"
+                  src={twit.image}
+                  alt=""
+                />}
+               {twit.video &&  <div className="flex flex-col items-center w-full border border-gray-400 rounded-md">
+  <video className="max-h-[40rem] p-5"  controls src={twit.video}/>
+                </div>}
+                
+              </div>
+  
+              <div className="py-5 flex flex-wrap justify-between items-center">
+                <div className="space-x-3 flex items-center text-gray-600">
+                  <ChatBubbleOutlineIcon
+                    className="cursor-pointer"
+                    onClick={handleOpenReplyModel}
+                  />
+                  {twit.totalReplies > 0 && <p>{twit.totalReplies}</p>}
+                </div>
+                <div
+                  className={`${
+                    isRetwit ? "text-pink-600" : "text-gray-600"
+                  } space-x-3 flex items-center`}
+                >
+                  <RepeatIcon
+                    className={` cursor-pointer`}
+                    onClick={handleCreateRetweet}
+                  />
+                  {retwit > 0 && <p>{retwit}</p>}
+                </div>
+                <div
+                  className={`${
+                    isLiked ? "text-pink-600" : "text-gray-600"
+                  } space-x-3 flex items-center `}
+                >
+                  {isLiked ? (
+                    <FavoriteIcon onClick={() => handleLikeTweet(-1)} />
+                  ) : (
+                    <FavoriteBorderIcon onClick={() => handleLikeTweet(1)} />
+                  )}
+                  {likes > 0 && <p>{likes}</p>}
+                </div>
+                <div className="space-x-3 flex items-center text-gray-600">
+                  <BarChartIcon />
+                  <p>24,599</p>
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <FileUploadIcon />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ReplyModal
+          twitData={twit}
+          open={openReplyModel}
+          handleClose={handleCloseReplyModel}
+        />
+      </div>
+    );
+  };
+  
+  export default TweetCard;

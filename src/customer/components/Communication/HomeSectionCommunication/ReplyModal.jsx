@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -9,132 +9,166 @@ import ImageIcon from '@mui/icons-material/Image';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createTweetReply } from '../../../../State/Twit/Action';
+import * as Yup from "yup";
+import { uploadToCloudnary } from '../../../../Utils/uploadToCloudnary';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+const validationSchema = Yup.object().shape({
+    content: Yup.string().required("Tweet text is required"),
+  });
+  
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 600,
-    bgcolor: 'background.paper',
-    border: 'none',
+    //   height: "90vh",
+    bgcolor: "background.paper",
     boxShadow: 24,
-    p: 4,
+    p: 2,
+    borderRadius: 3,
     outline: "none",
-    borderRadius: 4
-};
-
-export default function ReplyModal({handleClose, open, item}) {
-    const navigate = useNavigate();
-    const [uploadingImage, setUploadingImage] = React.useState(false)
-    const [selectImage, setSelectedImage] = React.useState("")
+    overflow: "scroll-y",
+  };
+  
+  const ReplyModal = ({ handleClose, twitData, open }) => {
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [selectedImage, setSelectedImage] = useState("");
     const dispatch = useDispatch();
-
-    const handleSubmit = (values) => {
-        dispatch(createTweetReply(values))
-        handleClose()
-        console.log("handle submit", values)
-    }
-
+    const { auth, theme } = useSelector((store) => store);
+    // const jwt=localStorage.getItem("jwt")
+  
+    const handleSubmit = (values, actions) => {
+      dispatch(createTweetReply(values));
+      actions.resetForm();
+      setSelectedImage("");
+      handleClose()
+    };
+  
     const formik = useFormik({
-        initialValues: {
-            content: "",
-            image: "",
-            twitId:item?.id
-        },
-        onSubmit: handleSubmit
-    })
-
-    const handleSelectImage = (event) => {
-        setUploadingImage(true);
-        const imgUrl = event.target.files[0]
-        formik.setFieldValue("image", imgUrl)
-        setSelectedImage(imgUrl)
-        setUploadingImage(false);
-    }
-
+      initialValues: {
+        content: "",
+        image: "",
+        twitId:twitData.id
+      },
+      validationSchema,
+      onSubmit: handleSubmit,
+    });
+    const handleSelectImage = async (event) => {
+      setUploadingImage(true);
+      const imgUrl = await uploadToCloudnary(event.target.files[0],"image");
+      formik.setFieldValue("image", imgUrl);
+      setSelectedImage(imgUrl);
+      setUploadingImage(false);
+    };
     return (
-        <div>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="flex space-x-5 ">
+              <Avatar
+                // onClick={()=>navigate(`/profile/${twitData.user.id}`)}
+                alt="Avatar"
+                src={twitData.user.image}
+                className="cursor-pointer"
+              />
+              <div className="w-full">
+                <div className="flex justify-between items-center ">
+                  <p className="flex cursor-pointer items-center space-x-2">
+                    <span className="font-semibold">
+                      {twitData.user.firstName}
+                    </span>
+                    <span className=" text-gray-600">
+                      @{twitData.user.email}
+                      · 2m
+                    </span>
+                  </p>
+                  <div>{/* <MoreHorizIcon /> */}</div>
+                </div>
+  
+                <div className="mt-2">
+                  <p className="mb-2 p-0">{twitData.content}</p>
+                </div>
+              </div>
+            </div>
+            <section
+              className={`py-10 }`}
             >
-                <Box sx={style}>
-                    <div className='flex space-x-5'>
-                        <Avatar
-                            onClick={() => navigate(`/communication_profile/${6}`)}
-                            className='cursor-pointer'
-                            alt='username'
-                            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJc4HXepLkvr8m8PstglugpQs1MLFw3rjzmw&usqp=CAU'
-                        />
-                        <div className='w-full'>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex cursor-pointer items-center space-x-2'>
-
-                                    <span className='font-semibold'>Baurzhan</span>
-                                    <span className='text-gray-600'>baurzhan@gmail.com. 2m</span>
-                                </div>
-                            </div>
-
-                            <div className='mt-2'>
-                                <div onClick={() => navigate(`/communication/twit/${3}`)} className='cursor-pointer'>
-                                    <p className='mb-2 p-0'>Cat in front of the FishBook</p>
-                                </div>
-                            </div>
+              <div className="flex space-x-5 ">
+                <Avatar alt="Avatar" src={auth.user?.image} />
+                <div className="w-full">
+                  <form onSubmit={formik.handleSubmit}>
+                    <div>
+                      <input
+                     
+                        type="text"
+                        name="content"
+                        placeholder="What is happening?"
+                        className={`border-none outline-none text-xl bg-transparent `}
+                        {...formik.getFieldProps("content")}
+                      />
+                      {formik.errors.content && formik.touched.content && (
+                        <div className="text-red-500">
+                          {formik.errors.content}
                         </div>
-
-
+                      )}
                     </div>
-                    <section className={`py-10`}>
-                        <div className='flex space-x-5'>
-                            <Avatar
-                                alt='username'
-                                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDnAV2195eKjdsIWb9qODnuYgxUnwJ0exESA&usqp=CAU'
-                            />
-                            <div className='w-full'>
-                                <form onSubmit={formik.handleSubmit}>
-                                    <div>
-                                        <input type="text" name='content' placeholder='What is happening?'
-                                            className={`border-none outline-none text-xl bg-transparent`}
-                                            {...formik.getFieldProps("content")} />
-                                        {formik.errors.content && formik.touched.content && (
-                                            <span className='text-red-500'>{formik.errors.content}</span>
-                                        )}
-                                    </div>
-                                    {/* <div>
-                                <img src="" alt="" />
-                            </div> */}
-                                    <div className='flex justify-between items-center mt-5'>
-                                        <div className='flex space-x-5 items-center'>
-                                            <label className='flex items-center space-x-2 rounded-md cursor-pointer'>
-                                                <ImageIcon className='text-[#1d9bf0]' />
-                                                <input type="file" name='imageFile' className='hidden' onChange={handleSelectImage} />
-                                            </label>
-                                            <FmdGoodIcon className='text-[#1d9bf0]' />
-                                            <TagFacesIcon className='text-[#1d9bf0]' />
-                                        </div>
-
-                                        <div>
-                                            <Button sx={{ width: "100%", borderRadius: "20px", paddingY: "8px", paddingX: "20px", bgcolor: "#1e88e5" }}
-                                                variant='contained'
-                                                type='submit'>
-                                                Tweet
-                                            </Button>
-                                        </div>
-
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </section>
-                </Box>
-            </Modal>
-        </div>
+  
+                    {!uploadingImage && selectedImage && (
+                      <div>
+                        <img className="w-[28rem]" src={selectedImage} alt="" />
+                      </div>
+                    )}
+  
+                    <div className="flex justify-between items-center mt-5">
+                      <div className="flex space-x-5 items-center">
+                        <label className="flex items-center space-x-2  rounded-md cursor-pointer">
+                          <ImageIcon className="text-[#1d9bf0]" />
+                          <input
+                            type="file"
+                            name="imageFile"
+                            className="hidden"
+                            onChange={handleSelectImage}
+                          />
+                        </label>
+  
+                        <FmdGoodIcon className="text-[#1d9bf0]" />
+                        <TagFacesIcon className="text-[#1d9bf0]" />
+                      </div>
+  
+                      <div>
+                        <Button
+                          type="submit"
+                          sx={{
+                            bgcolor: "#1d9bf0",
+                            borderRadius: "20px",
+                            paddingY: "8px",
+                            paddingX: "20px",
+                            color: "white",
+                          }}
+                        >
+                          Tweet
+                        </Button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </section>
+            {/* <section>
+              { <BackdropComponent open={uploadingImage}/>}
+            </section> */}
+          </Box>
+        </Modal>
+      </div>
     );
-}
+  };
+  
+  export default ReplyModal;

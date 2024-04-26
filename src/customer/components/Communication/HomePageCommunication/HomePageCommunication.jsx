@@ -6,6 +6,7 @@ import RightPartCommunication from '../RightPartCommunication/RightPartCommunica
 import { Route, Routes } from 'react-router-dom';
 import ProfileCommunication from '../ProfileCommunication/ProfileCommunication';
 import TwitDetails from '../TwitDetails/TwitDetails';
+import VerifiedSuccess from '../VerifiedSuccess/VerifiedSuccess';
 
 const HomePageCommunication = () => {
     return (
@@ -20,6 +21,7 @@ const HomePageCommunication = () => {
                         <Route path='/' element={<HomeSectionCommunication/>}></Route>
                         <Route path='/profile/:id' element={<ProfileCommunication/>}></Route>
                         <Route path='/twit/:id' element={<TwitDetails/>}></Route>
+                        <Route path='/verified' element={<VerifiedSuccess/>}></Route>
                     </Routes>
                     
                 </Grid>

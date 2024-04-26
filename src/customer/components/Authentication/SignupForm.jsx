@@ -132,10 +132,10 @@ const SignupForm = () => {
                 <Grid item xs={4}>
                     <InputLabel>Day</InputLabel>
                     <Select name='day'
-                    fullWidth
-                    onChange={handleDateChange("day")}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dateOfBirth.day}>
+                        fullWidth
+                        onChange={handleDateChange("day")}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.dateOfBirth.day}>
                         {days.map((day) => (
                             <MenuItem key={day} value={day}>
                                 {day}
@@ -147,10 +147,10 @@ const SignupForm = () => {
                 <Grid item xs={4}>
                     <InputLabel>Month</InputLabel>
                     <Select name='month'
-                    fullWidth
-                    onChange={handleDateChange("month")}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dateOfBirth.month}>
+                        fullWidth
+                        onChange={handleDateChange("month")}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.dateOfBirth.month}>
                         {months.map((month) => (
                             <MenuItem key={month.label} value={month.value}>
                                 {month.label}
@@ -162,10 +162,10 @@ const SignupForm = () => {
                 <Grid item xs={4}>
                     <InputLabel>Year</InputLabel>
                     <Select name='year'
-                    fullWidth
-                    onChange={handleDateChange("year")}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.dateOfBirth.year}>
+                        fullWidth
+                        onChange={handleDateChange("year")}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.dateOfBirth.year}>
                         {years.map((year) => (
                             <MenuItem key={year} value={year}>
                                 {year}
@@ -173,6 +173,20 @@ const SignupForm = () => {
                         ))}
                     </Select>
                 </Grid>
+
+                {/* <Grid item xs={4}>
+                    <InputLabel>Role</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Role"
+                        name="role"
+                    >
+                        <MenuItem value={"ROLE_ADMIN"}>Admin</MenuItem>
+                        <MenuItem value={"ROLE_CUSTOMER"}>Customer</MenuItem>
+                    </Select>
+                </Grid> */}
 
                 <Grid className='mt-20' item xs={12}>
                     <Button sx={{ borderRadius: "29px", py: "15px", bgcolor: blue[500] }}

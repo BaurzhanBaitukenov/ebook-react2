@@ -37,7 +37,7 @@ function App() {
       <Routes>
       <Route path='/communication/*' element={<CommunicationRouters />} />
         <Route path='/*' element={<CustomerRouter/>}></Route>
-        <Route path='/admin/*' element={<AdminRouters/>}></Route>
+        {auth.user?.role==="ROLE_ADMIN" && <Route path="/admin/*" element={<AdminRouters />} />}
       </Routes>
 
     </div>

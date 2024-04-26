@@ -17,35 +17,35 @@ export const navigationCommunication = [
         path:"/communication"
     },
 
-    {
-        title: "Explore",
-        icon:<ExploreIcon/>,
-        path:"/communication/explore"
-    },
+    // {
+    //     title: "Explore",
+    //     icon:<ExploreIcon/>,
+    //     path:"/communication/explore"
+    // },
 
-    {
-        title: "Notification",
-        icon:<NotificationIcon/>,
-        path:"/communication/notification"
-    },
+    // {
+    //     title: "Notification",
+    //     icon:<NotificationIcon/>,
+    //     path:"/communication/notification"
+    // },
 
-    {
-        title: "Messages",
-        icon:<MessageIcon/>,
-        path:"/communication/messages"
-    },
+    // {
+    //     title: "Messages",
+    //     icon:<MessageIcon/>,
+    //     path:"/communication/messages"
+    // },
 
-    {
-        title: "Lists",
-        icon:<ListAltIcon/>,
-        path:"/communication/list"
-    },
+    // {
+    //     title: "Lists",
+    //     icon:<ListAltIcon/>,
+    //     path:"/communication/list"
+    // },
 
-    {
-        title: "Communities",
-        icon:<GroupIcon/>,
-        path:"/communication/communities"
-    },
+    // {
+    //     title: "Communities",
+    //     icon:<GroupIcon/>,
+    //     path:"/communication/communities"
+    // },
 
     {
         title: "Verified",
@@ -59,11 +59,11 @@ export const navigationCommunication = [
         path:"/communication/profile/:userId"
     },
 
-    {
-        title: "More",
-        icon:<PendingIcon/>,
-        path:"/communication/more"
-    },
+    // {
+    //     title: "More",
+    //     icon:<PendingIcon/>,
+    //     path:"/communication/more"
+    // },
     {
         title: "Go Back to the E-VBook store",
         icon:<BookIcon/>,

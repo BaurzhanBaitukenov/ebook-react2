@@ -83,7 +83,7 @@ export default function Navigation() {
       handleClose()
     }
     if (location.pathname === "/login" || location.pathname === "/register") {
-        navigate("/")
+      navigate("/")
     }
 
   }, [auth.user])
@@ -280,11 +280,14 @@ export default function Navigation() {
               <div className="ml-4 flex lg:ml-0">
                 <a href="/">
                   <span className="sr-only">Your Company</span>
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNtTGLRw9H6o4FPfz8jwQ8NFZTyFH-ToovEA&usqp=CAU"
-                    alt="Shopwithzosh"
-                    className="h-8 w-8 mr-2"
-                  />
+                  <div className="flex items-center">
+                    <img
+                      className="w-10"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4U1T-uFozatTx9xMJtRT9Lu2Ajv1BqXdxfA&usqp=CAU"
+                      alt=""
+                    />
+                    <span className="ml-2 text-lg font-bold">E-VBOOK</span>
+                  </div>
                 </a>
               </div>
 

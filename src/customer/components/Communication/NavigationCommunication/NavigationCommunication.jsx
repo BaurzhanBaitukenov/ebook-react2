@@ -44,17 +44,25 @@ const NavigationCommunication = () => {
 
     useEffect(() => {
 
-        if(jwt) {
-          dispatch(getUser(jwt))
+        if (jwt) {
+            dispatch(getUser(jwt))
         }
-    
-      },[auth.jwt])
+
+    }, [auth.jwt])
 
     return (
         <div className='h-screen sticky top-0'>
             <div>
                 <div className='space-y-6'>
-
+                    <div className="flex items-center">
+                        <img
+                            className="w-10"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4U1T-uFozatTx9xMJtRT9Lu2Ajv1BqXdxfA&usqp=CAU"
+                            alt=""
+                            onClick={() => navigate("/")}
+                        />
+                        <span className="ml-2 text-lg font-bold">E-VBOOK</span>
+                    </div>
                     {navigationCommunication.map((item) => <div className='cursor-pointer flex space-x-3 
                     items-center' onClick={() => item.title === "Profile" ? navigate(`/communication/profile/${auth.user?.id}`) : navigate(item.path)}>
                         {item.icon}
@@ -76,7 +84,7 @@ const NavigationCommunication = () => {
                 <div className='flex items-center space-x-3'>
                     <Avatar
                         alt="username"
-                        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDnAV2195eKjdsIWb9qODnuYgxUnwJ0exESA&usqp=CAU'
+                        src={auth.user?.image}
                     />
                     <div>
                         <div>
