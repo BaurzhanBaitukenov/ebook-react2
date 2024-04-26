@@ -18,7 +18,7 @@ const HomePageCommunication = () => {
                 <Grid item xs={12} lg={6} className='px-5 lg:px-9 hidden lg:block w-full relative'>
                     <Routes>
                         <Route path='/' element={<HomeSectionCommunication/>}></Route>
-                        <Route path='/profile/:userId' element={<ProfileCommunication/>}></Route>
+                        <Route path='/profile/:id' element={<ProfileCommunication/>}></Route>
                         <Route path='/twit/:id' element={<TwitDetails/>}></Route>
                     </Routes>
                     

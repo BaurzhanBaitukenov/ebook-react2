@@ -65,6 +65,10 @@ export default function Navigation() {
     navigate(`/profile`);
   };
 
+  const handleLibraryClikc = () => {
+    navigate('/library')
+  }
+
   useEffect(() => {
     if (jwt) {
       dispatch(getUser(jwt))
@@ -79,7 +83,7 @@ export default function Navigation() {
       handleClose()
     }
     if (location.pathname === "/login" || location.pathname === "/register") {
-        // navigate("/")
+        navigate("/")
     }
 
   }, [auth.user])
@@ -472,6 +476,9 @@ export default function Navigation() {
                         </MenuItem>
                         <MenuItem onClick={() => navigate("/profile")}>
                           Profile
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate("/library")}>
+                          Libray
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                       </Menu>

@@ -27,7 +27,6 @@ function App() {
 
     if(jwt) {
       dispatch(getUser(jwt))
-      navigate("/")
     }
 
   },[auth.jwt])

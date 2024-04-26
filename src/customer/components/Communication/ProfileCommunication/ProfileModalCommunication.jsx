@@ -6,6 +6,9 @@ import Modal from '@mui/material/Modal';
 import { Formik, useFormik } from 'formik';
 import { Avatar, IconButton, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserProfile } from '../../../../State/Auth/Action';
+import { uploadToCloudnary } from '../../../../Utils/uploadToCloudnary';
 
 const style = {
     position: 'absolute',
@@ -24,22 +27,28 @@ const style = {
 export default function ProfileModalCommunication({open, handleClose}) {
     // const [open, setOpen] = React.useState(false);
     const [uploading, setUploading] = React.useState(false);
-
+    const dispatch = useDispatch();
+    const [selectedImage, setSelectedImage] = React.useState("");
+    const {auth} = useSelector(store => store)
     const handleSubmit = (values) => {
+        dispatch(updateUserProfile(values))
         console.log("handle submit", values)
+        setSelectedImage("")
     }
 
-    const handleImageChange = (event) => {
+    const handleImageChange = async (event) => {
         setUploading(true);
         const { name } = event.target
-        const file = event.target.files[0]
+        const file = await uploadToCloudnary(event.target.files[0])
         formik.setFieldValue(name, file);
+        setSelectedImage(file)
         setUploading(false)
     }
 
     const formik = useFormik({
         initialValues: {
-            fullName: "",
+            firstName: "",
+            lastName: "",
             website: "",
             location: "",
             bio: "",
@@ -48,7 +57,7 @@ export default function ProfileModalCommunication({open, handleClose}) {
         },
         onSubmit: handleSubmit
     })
-
+    console.log("auth ", auth)
     return (
         <div>
             <Modal
@@ -87,7 +96,7 @@ export default function ProfileModalCommunication({open, handleClose}) {
                                     <div className='relative'>
                                         <Avatar
                                             sx={{ width: "10rem", height: "10rem", border: "4px solid white" }}
-                                            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJc4HXepLkvr8m8PstglugpQs1MLFw3rjzmw&usqp=CAU' />
+                                            src={selectedImage || auth.user?.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5060z9pN1BKdLvRKExuWHhtc1xvw4VgyioA&usqp=CAU"} />
 
                                         <input
                                             className='absolute top-0 left-0 w-[10rem] h-full opacity-0 cursor-pointer'
@@ -104,13 +113,24 @@ export default function ProfileModalCommunication({open, handleClose}) {
 
                                 <TextField
                                     fullWidth
-                                    id='fullName'
-                                    name='fullName'
-                                    label="Full Name"
-                                    value={formik.values.fullName}
+                                    id='firstName'
+                                    name='firstName'
+                                    label="First Name"
+                                    value={formik.values.firstName}
                                     onChange={formik.handleChange}
-                                    error={formik.touched.fullName && Boolean(formik.errors.fullName)}
-                                    helperText={formik.touched.fullName && formik.errors.fullName}
+                                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                    helperText={formik.touched.firstName && formik.errors.firstName}
+                                />
+
+<TextField
+                                    fullWidth
+                                    id='lastName'
+                                    name='lastName'
+                                    label="Last Name"
+                                    value={formik.values.lastName}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                                    helperText={formik.touched.lastName && formik.errors.lastName}
                                 />
 
                                 <TextField

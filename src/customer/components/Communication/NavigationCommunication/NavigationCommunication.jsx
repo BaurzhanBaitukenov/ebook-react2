@@ -5,7 +5,8 @@ import { findUserProfile } from '../../../../State/User/Action';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { logout } from '../../../../State/Auth/Action';
+import { getUser, logout } from '../../../../State/Auth/Action';
+import { useLocation } from 'react-router-dom/dist';
 
 const NavigationCommunication = () => {
 
@@ -13,6 +14,9 @@ const NavigationCommunication = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const jwt = localStorage.getItem("jwt")
+    const location = useLocation();
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -24,11 +28,13 @@ const NavigationCommunication = () => {
         dispatch(logout())
     }
 
-    const handleLoginClick = () => {
-        navigate("/login")
+    const handleGoBack = () => {
+        navigate("/")
     }
 
-    const navigate = useNavigate();
+    const handleLoginClick = () => {
+        navigate("/")
+    }
 
     const { userProfile } = useSelector((state) => state.user);
 
@@ -36,13 +42,21 @@ const NavigationCommunication = () => {
         dispatch(findUserProfile());
     }, [dispatch]);
 
+    useEffect(() => {
+
+        if(jwt) {
+          dispatch(getUser(jwt))
+        }
+    
+      },[auth.jwt])
+
     return (
         <div className='h-screen sticky top-0'>
             <div>
                 <div className='space-y-6'>
 
                     {navigationCommunication.map((item) => <div className='cursor-pointer flex space-x-3 
-                    items-center' onClick={() => item.title === "Profile" ? navigate(`/communication/profile/${6}`) : navigate(item.path)}>
+                    items-center' onClick={() => item.title === "Profile" ? navigate(`/communication/profile/${auth.user?.id}`) : navigate(item.path)}>
                         {item.icon}
                         <p className='text-xl'>{item.title}</p>
                     </div>)}
@@ -90,8 +104,9 @@ const NavigationCommunication = () => {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <MenuItem onClick={handleLoginClick}>Login</MenuItem>
+                            {/* <MenuItem onClick={handleLoginClick}>Login</MenuItem> */}
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            <MenuItem onClick={handleGoBack}>Go Back</MenuItem>
                         </Menu>
                     </div>
                 </div>
