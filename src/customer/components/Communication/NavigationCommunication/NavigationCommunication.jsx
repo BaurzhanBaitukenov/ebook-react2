@@ -26,6 +26,7 @@ const NavigationCommunication = () => {
 
     const handleLogout = () => {
         dispatch(logout())
+        navigate("/")
     }
 
     const handleGoBack = () => {

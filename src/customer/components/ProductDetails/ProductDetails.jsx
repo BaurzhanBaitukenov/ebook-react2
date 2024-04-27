@@ -73,12 +73,20 @@ export default function ProducDetails() {
 
     console.log("---- ", params.productId)
 
-    const handleAddToCart = () => {
-        const data = { productId: params.productId, language: selectedLanguage.name }
-        console.log("data - ", data)
-        dispatch(addItemToCart(data))
-        navigate("/cart")
+    const [addToCartClicked, setAddToCartClicked] = useState(false);
+
+    const handleAddToCartClick = () => {
+        setAddToCartClicked(true);
     }
+    
+    useEffect(() => {
+        if (addToCartClicked && selectedLanguage !== "") {
+            const data = { productId: params.productId, language: selectedLanguage.name }
+            dispatch(addItemToCart(data))
+            navigate("/cart")
+        }
+    }, [addToCartClicked, selectedLanguage])
+    
 
     useEffect(() => {
         const data = { productId: params.productId }
@@ -237,7 +245,7 @@ export default function ProducDetails() {
                                     </RadioGroup>
                                 </div>
 
-                                <Button onClick={handleAddToCart} color='secondary' variant="contained" sx={{ px: "2rem", py: "1rem" }}>
+                                <Button onClick={handleAddToCartClick} color='secondary' variant="contained" sx={{ px: "2rem", py: "1rem" }}>
                                     Add To Cart
                                 </Button>
 
