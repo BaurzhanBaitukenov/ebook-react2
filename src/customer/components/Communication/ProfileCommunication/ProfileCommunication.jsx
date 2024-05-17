@@ -15,7 +15,7 @@ import { BusinessCenterSharp } from '@mui/icons-material';
 
 const ProfileCommunication = () => {
     const [tabValue, setTabValue] = React.useState("1");
-    const { auth, twit, theme } = useSelector((store) => store);
+    const { auth, twit, theme, order} = useSelector((store) => store);
     const [openProfileModel, setOpenProfileModel] = useState();
     const [openSnackBar, setOpenSnackBar] = useState(false);
   
@@ -163,7 +163,6 @@ const ProfileCommunication = () => {
                 >
                   <Tab label="Tweets" value="1" />
                   <Tab label="Replies" value="2" />
-                  <Tab label="Media" value="3" />
                   <Tab label="Likes" value="4" />
                 </TabList>
               </Box>
@@ -176,7 +175,7 @@ const ProfileCommunication = () => {
                 {twit.likedTwits?.map((item) => (
                   <TweetCard twit={item} />
                 ))}</TabPanel>
-              <TabPanel value="3">Item Three</TabPanel>
+
               <TabPanel value="4">
                 {twit.likedTwits?.map((item) => (
                   <TweetCard twit={item} />

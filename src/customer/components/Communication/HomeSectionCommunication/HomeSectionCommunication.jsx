@@ -158,7 +158,7 @@ const validationSchema = Yup.object().shape({
                         color: "white",
                       }}
                     >
-                      Tweet
+                      Bokeet
                     </Button>
                   </div>
                 </div>
