@@ -1,8 +1,12 @@
 import React from 'react'
 import HomeSectionCarosel from '../../components/HomeSectionCarosel/HomeSectionCarosel';
 import { book_first } from '../../../Data/book_first';
+import { book_bestseller } from '../../../Data/book_bestseller';
 import MainCrosel from '../../components/HomeCarosel/MainCrosel';
 import Footer from '../../components/Footer/Footer';
+import { book_mostpopular } from '../../../Data/book_mostpopular';
+import { book_comics } from '../../../Data/book_comics';
+import { book_newauthors } from '../../../Data/book_newauthors';
 
 const HomePage = () => {
     return (
@@ -10,7 +14,7 @@ const HomePage = () => {
             <MainCrosel />
 
             <div className='space-y-10 py-20 flex flex-col justify-center px-5 lg:px-10 border border-gray-300 rounded-lg'>
-                <HomeSectionCarosel data={book_first} sectionName={"Bestsellers"} />
+                <HomeSectionCarosel data={book_bestseller} sectionName={"Bestsellers"} />
 
                 <h1 className="text-center text-4xl lg:text-4xl font-bold my-5">Know all about new books with us!</h1>
 
@@ -27,9 +31,9 @@ const HomePage = () => {
 
 
                 <HomeSectionCarosel data={book_first} sectionName={"New Trend"} />
-                <HomeSectionCarosel data={book_first} sectionName={"Most Popular"} />
-                <HomeSectionCarosel data={book_first} sectionName={"Comics"} />
-                <HomeSectionCarosel data={book_first} sectionName={"New Authors"} />
+                <HomeSectionCarosel data={book_mostpopular} sectionName={"Most Popular"} />
+                <HomeSectionCarosel data={book_comics} sectionName={"Comics"} />
+                <HomeSectionCarosel data={book_newauthors} sectionName={"New Authors"} />
             </div>
 
             <Footer />

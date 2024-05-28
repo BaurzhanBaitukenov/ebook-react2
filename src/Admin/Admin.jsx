@@ -8,14 +8,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CreateProductForm from './components/CreateProductForm';
 import ProductsTable from './components/ProductsTable';
 import OrdersTable from './components/OrdersTable';
-import CustomersTable from './components/CustomersTable';
 import AdminDashboard from './components/Dashboard';
 
 
 const menu = [
     { name: "Dashboard", path: "/admin", icon: <DashboardIcon /> },
     { name: "Products", path: "/admin/products", icon: <DashboardIcon /> },
-    { name: "Customers", path: "/admin/customers", icon: <DashboardIcon /> },
     { name: "Orders", path: "/admin/orders", icon: <DashboardIcon /> },
     { name: "AddProduct", path: "/admin/product/create", icon: <DashboardIcon /> },
     // {name: "", path:""},
@@ -89,7 +87,6 @@ const Admin = () => {
                         <Route path='/product/create' element={<CreateProductForm/>}></Route>
                         <Route path='/products' element={<ProductsTable/>}></Route>
                         <Route path='/orders' element={<OrdersTable/>}></Route>
-                        <Route path='/customers' element={<CustomersTable/>}></Route>
 
                     </Routes>
 
