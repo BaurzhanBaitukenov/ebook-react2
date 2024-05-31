@@ -23,7 +23,7 @@ const Achivement = () => {
                     Ebook-Vread
                 </Typography>
                 <Typography variant='body2'>Congratulations</Typography>
-                <Typography variant='h5' sx={{my:3.1}}>420.8k</Typography>
+                <Typography variant='h5' sx={{my:3.1}}></Typography>
 
                 <Button size='small' variant='contained'>View Sales</Button>
 

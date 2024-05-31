@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FIND_USER_BY_ID_FAILURE, FIND_USER_BY_ID_REQUEST, FIND_USER_BY_ID_SUCCESS, FOLLOW_USER_FAILURE, FOLLOW_USER_REQUEST, FOLLOW_USER_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, SEARCH_USER_FAILURE, SEARCH_USER_REQUEST, SEARCH_USER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType";
+import { FIND_USER_BY_ID_FAILURE, FIND_USER_BY_ID_REQUEST, FIND_USER_BY_ID_SUCCESS, FOLLOW_USER_FAILURE, FOLLOW_USER_REQUEST, FOLLOW_USER_SUCCESS, GET_ALL_USERS_FAILURE, GET_ALL_USERS_REQUEST, GET_ALL_USERS_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, SEARCH_USER_FAILURE, SEARCH_USER_REQUEST, SEARCH_USER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType";
 import { API_BASE_URL, api } from "../../config/config";
 
 const token = localStorage.getItem("jwt");
@@ -141,6 +141,16 @@ export const findUserById = (userId) => async (dispatch) => {
     }
   };
 
+  // export const getAllUsers = () => async (dispatch) => {
+  //   dispatch({ type: GET_ALL_USERS_REQUEST });
+  //   try {
+  //     const response = await api.get("/api/admin/users");
+  //     const users = response.data;
+  //     dispatch({ type: GET_ALL_USERS_SUCCESS, payload: users });
+  //   } catch (error) {
+  //     dispatch({ type: GET_ALL_USERS_FAILURE, payload: error.message });
+  //   }
+  // };
 
 export const logout = (token) => {
     return async (dispatch) => {

@@ -220,6 +220,19 @@ const jwt=localStorage.getItem("jwt")
             />
           </Grid>
 
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              id="outlined-multiline-static"
+              label="Link"
+              multiline
+              name="link"
+              rows={3}
+              onChange={handleChange}
+              value={productData.link}
+            />
+          </Grid>
+
           {productData.language.map((language, index) => (
             <Grid container item spacing={3} >
               <Grid item xs={12} sm={6}>

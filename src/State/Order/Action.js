@@ -3,6 +3,9 @@ import {
   CREATE_ORDER_FAILURE,
   CREATE_ORDER_REQUEST,
   CREATE_ORDER_SUCCESS,
+  GET_ALL_ORDERS_FAILURE,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
   GET_ORDERS_BY_USER_ID_FAILURE,
   GET_ORDERS_BY_USER_ID_REQUEST,
   GET_ORDERS_BY_USER_ID_SUCCESS,
@@ -88,6 +91,24 @@ export const getOrderHistory = (reqData) => async (dispatch, getState) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+export const getAllOrders = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_ORDERS_REQUEST });
+  try {
+    const { data } = await api.get(`/api/admin/orders/`);
+    console.log("all orders - ", data);
+    dispatch({
+      type: GET_ALL_ORDERS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log("catch error : ", error);
+    dispatch({
+      type: GET_ALL_ORDERS_FAILURE,
+      payload: error.message,
     });
   }
 };
