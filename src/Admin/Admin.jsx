@@ -15,7 +15,6 @@ const menu = [
     { name: "Dashboard", path: "/admin", icon: <DashboardIcon /> },
     { name: "Products", path: "/admin/products", icon: <DashboardIcon /> },
     { name: "Orders", path: "/admin/orders", icon: <DashboardIcon /> },
-    { name: "AddProduct", path: "/admin/product/create", icon: <DashboardIcon /> },
     // {name: "", path:""},
 ]
 

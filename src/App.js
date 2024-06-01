@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import { getUser } from './State/Auth/Action';
 import SigninForm from './customer/components/Authentication/SinginForm';
 import { useNavigate } from 'react-router-dom/dist';
+import SellerRouters from './Routers/SellerRouters';
 function App() {
   const jwt = localStorage.getItem("jwt")
   const {auth} = useSelector(store => store)
@@ -38,6 +39,7 @@ function App() {
       <Route path='/communication/*' element={<CommunicationRouters />} />
         <Route path='/*' element={<CustomerRouter/>}></Route>
         {auth.user?.role==="ROLE_ADMIN" && <Route path="/admin/*" element={<AdminRouters />} />}
+        {auth.user?.role==="ROLE_SELLER" && <Route path="/seller/*" element={<SellerRouters />} />}
       </Routes>
 
     </div>
