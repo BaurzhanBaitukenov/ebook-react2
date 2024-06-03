@@ -15,6 +15,7 @@ const rootReducers = combineReducers({
     cart:cartReducer,
     order:orderReducer,
     adminOrder:adminOrderReducer,
+    adminsProduct:customerProductReducer,
     user:userReducer,
     review:ReviewReducer,
     twit:tweetReducer,

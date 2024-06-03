@@ -41,7 +41,7 @@ const CustomerRouter = () => {
                 <Route path='/account/order' element={<Order/>}></Route>
                 <Route path='/account/order/:orderId' element={<OrderDetails/>}></Route>
                 <Route path="/account/rate/:productId" element={<RateProduct />}></Route>
-                <Route path='/payment/:orderId' element={<PaymentSuccess/>}></Route>
+                <Route path='/payment-success' element={<PaymentSuccess />} />
                 <Route path="*" element={<NotFound />} />
 
                 {/* Communication */}

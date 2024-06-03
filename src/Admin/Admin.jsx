@@ -9,6 +9,7 @@ import CreateProductForm from './components/CreateProductForm';
 import ProductsTable from './components/ProductsTable';
 import OrdersTable from './components/OrdersTable';
 import AdminDashboard from './components/Dashboard';
+import UpdateProductForm from './components/updateProduct/UpdateProductForm';
 
 
 const menu = [
@@ -86,7 +87,7 @@ const Admin = () => {
                         <Route path='/product/create' element={<CreateProductForm/>}></Route>
                         <Route path='/products' element={<ProductsTable/>}></Route>
                         <Route path='/orders' element={<OrdersTable/>}></Route>
-
+                        <Route path="/product/update/:productId" element={<UpdateProductForm/>}></Route>
                     </Routes>
 
                 </div>
