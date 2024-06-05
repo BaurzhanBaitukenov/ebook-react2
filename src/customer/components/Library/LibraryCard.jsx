@@ -9,7 +9,7 @@ const LibraryCard = ({ item, order, product }) => {
         // Остановить всплытие события, чтобы предотвратить переход по ссылке /product/id
         e.stopPropagation();
         // Перенаправить на страницу загрузки
-        navigate(`/download`);
+        window.location.href = item?.product.link;
     };
 
     return (
