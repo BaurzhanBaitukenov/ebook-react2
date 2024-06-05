@@ -18,6 +18,7 @@ import RateProduct from '../customer/components/ReviewProduct/RateProduct'
 import HomePageCommunication from '../customer/components/Communication/HomePageCommunication/HomePageCommunication'
 import ProfileCommunication from '../customer/components/Communication/ProfileCommunication/ProfileCommunication'
 import Authentication from '../customer/components/Authentication/Authentication'
+import Stores from '../customer/components/Stores/Stores'
 
 
 const CustomerRouter = () => {
@@ -31,6 +32,7 @@ const CustomerRouter = () => {
             <Route path='/register' element={<Authentication/>}></Route>
 
                 <Route path='/' element={<HomePage/>}></Route>
+                <Route path='/stores' element={<Stores/>}></Route>
                 <Route path='/profile' element={<UserProfile/>}></Route>
                 <Route path='/cart' element={<Cart/>}></Route>
                 <Route path='/support' element={<Support/>}></Route>
